@@ -73,6 +73,11 @@ public class BothwayLinkedList<E> {
         return false;
     }
 
+    /**
+     * 调整指针、删除元素
+     * @param x
+     * @return
+     */
     E unlink(Node<E> x) {
         // assert x != null;
         final E element = x.item;
