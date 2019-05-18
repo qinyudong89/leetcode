@@ -2,7 +2,6 @@ package com.example.leetcode.stack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * @author yu dong qin
