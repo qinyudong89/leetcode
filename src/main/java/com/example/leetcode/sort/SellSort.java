@@ -1,7 +1,5 @@
 package com.example.leetcode.sort;
 
-import java.util.Arrays;
-
 /**
  * @author yu dong qin
  * @ClassName: SellSort
@@ -28,12 +26,5 @@ public class SellSort {
             number = number / 2;
         }
         return array;
-    }
-
-    public static void main(String[] args) {
-        int[] array = {38, 65, 97, 76, 13, 27, 49};
-        System.out.println("排序前的数据为：" + Arrays.toString(array));
-        System.out.println("排序后的数据为：" + Arrays.toString(shellSort(array)));
-
     }
 }

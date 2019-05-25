@@ -1,7 +1,5 @@
 package com.example.leetcode.sort;
 
-import java.util.Arrays;
-
 /**
  * @author yu dong qin
  * @ClassName: InsertSort
