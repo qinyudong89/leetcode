@@ -14,7 +14,7 @@ public class MergeSort {
         if (array.length < 2) {
             return array;
         }
-        int mid = array.length / 2;
+        int mid = array.length >> 1;
         int[] left = decomposition(array, 0, mid);
         int[] right = decomposition(array, mid, array.length);
         return mergeSort(mergeSort(left), mergeSort(right));
