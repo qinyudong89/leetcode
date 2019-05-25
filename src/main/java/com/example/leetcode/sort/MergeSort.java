@@ -15,8 +15,8 @@ public class MergeSort {
             return array;
         }
         int mid = array.length >> 1;
-        int[] left = decomposition(array, 0, mid);
-        int[] right = decomposition(array, mid, array.length);
+        int[] left = partition(array, 0, mid);
+        int[] right = partition(array, mid, array.length);
         return mergeSort(mergeSort(left), mergeSort(right));
     }
 
@@ -45,7 +45,7 @@ public class MergeSort {
      * @param end
      * @return
      */
-    public static int[] decomposition(int[] array, int start, int end) {
+    public static int[] partition(int[] array, int start, int end) {
         if (array.length < 2) {
             return array;
         }
