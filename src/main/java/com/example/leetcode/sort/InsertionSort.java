@@ -2,13 +2,13 @@ package com.example.leetcode.sort;
 
 /**
  * @author yu dong qin
- * @ClassName: InsertSort
+ * @ClassName: InsertionSort
  * @Description: 插入排序
  * @date 2019/5/22 22:16
  */
-public class InsertSort {
+public class InsertionSort {
 
-    public static int[] sort(int[] array) {
+    public static int[] insertionSort(int[] array) {
         if (array.length <= 1) {
             return array;
         }
