@@ -37,9 +37,4 @@ public class ScrewArray {
         }
         return -1;
     }
-
-    public static void main(String[] args) {
-        int[] array = {4,5,6,1,2,3};
-        search(array, 5);
-    }
 }
