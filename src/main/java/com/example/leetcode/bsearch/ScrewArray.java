@@ -7,7 +7,6 @@ package com.example.leetcode.bsearch;
  */
 public class ScrewArray {
 
-    //4，5，6，1，2，3  5
     public static int search(int[] array, int target) {
         int low = 0;
         int high = array.length - 1;
