@@ -1,5 +1,7 @@
 package com.example.leetcode.binarytreenode;
 
+import java.util.*;
+
 /**
  * @Description:
  * @Auther: 覃钰栋
@@ -15,7 +17,6 @@ public class BinaryTree {
         System.out.print(node.getData() + "\t");
         preOrder(node.getLeft());
         preOrder(node.getRight());
-
     }
 
     //中序
@@ -30,25 +31,55 @@ public class BinaryTree {
 
     //后序
     public static void postOrder(Node node) {
+        if (node == null) {
+            return;
+        }
+        postOrder(node.getLeft());
+        postOrder(node.getRight());
+        System.out.print(node.getData() + "\t");
+    }
 
+    //层遍历
+    public static List<List<Integer>> levelOrder(Node node) {
+        if (node == null) {
+            return null;
+        }
+
+        List<List<Integer>> resultList = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        //此处用队列，是使用队列“先进先出”的特点
+        Queue<Node> queue = new LinkedList();
+        queue.offer(node);
+
+        while (!queue.isEmpty()) {
+            Node root = queue.peek();
+            queue.poll();
+            list.add(root.getData());
+            if (root.getLeft() != null) {
+                queue.offer(root.getLeft());
+            }
+            if (root.getRight() != null) {
+                queue.offer(root.getRight());
+            }
+        }
+        resultList.add(list);
+        return resultList;
 
     }
 
     public static void main(String[] args) {
-        Node node10 = new Node(10, null, null);
-        Node node8 = new Node(8, null, null);
-        Node node9 = new Node(9, null, node10);
-        Node node4 = new Node(4, null, null);
-        Node node5 = new Node(5, node8, node9);
-        Node node6 = new Node(6, null, null);
-        Node node7 = new Node(7, null, null);
-        Node node2 = new Node(2, node4, node5);
-        Node node3 = new Node(3, node6, node7);
-        Node node1 = new Node(1, node2, node3);
+        Node node5 = new Node(7, null, null);
+        Node node4 = new Node(15, null, null);
+        Node node3 = new Node(20, node4, node5);
+        Node node2 = new Node(9, null, null);
+        Node node1 = new Node(3, node2, node3);
+
+
+        //[3,9,20,null,null,15,7],
         //采用递归的方式进行遍历
-        System.out.println("-----前序遍历------");
-        BinaryTree.inOrder(node1);
-        System.out.println();
+        List<List<Integer>> resultList = BinaryTree.levelOrder(node1);
+        System.out.println(Arrays.toString(resultList.toArray()));
+
     }
 
 }
