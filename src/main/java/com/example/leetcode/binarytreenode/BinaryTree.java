@@ -46,23 +46,27 @@ public class BinaryTree {
         }
 
         List<List<Integer>> resultList = new ArrayList<>();
-        List<Integer> list = new ArrayList<>();
+        List<Integer> list = null;
         //此处用队列，是使用队列“先进先出”的特点
         Queue<TreeNode> queue = new LinkedList();
         queue.offer(treeNode);
 
         while (!queue.isEmpty()) {
-            TreeNode root = queue.peek();
-            queue.poll();
-            list.add(root.getData());
-            if (root.getLeft() != null) {
-                queue.offer(root.getLeft());
+            int size = queue.size();
+            //获取同一层的所有节点
+            list = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode root = queue.poll();
+                list.add(root.getData());
+                if (root.getLeft() != null) {
+                    queue.offer(root.getLeft());
+                }
+                if (root.getRight() != null) {
+                    queue.offer(root.getRight());
+                }
             }
-            if (root.getRight() != null) {
-                queue.offer(root.getRight());
-            }
+            resultList.add(list);
         }
-        resultList.add(list);
         return resultList;
 
     }
@@ -75,7 +79,7 @@ public class BinaryTree {
         TreeNode node1 = new TreeNode(3, node2, node3);
 
 
-        //[3,9,20,null,null,15,7],
+        //[3,9,20,null,null,15,7] ----> [[3], [9, 20], [15, 7]]
         //采用递归的方式进行遍历
         List<List<Integer>> resultList = BinaryTree.levelOrder(node1);
         System.out.println(Arrays.toString(resultList.toArray()));
