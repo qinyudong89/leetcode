@@ -5,12 +5,12 @@ package com.example.leetcode.binarytreenode;
  * @Auther: 覃钰栋
  * @Date: 2019/5/29 18:08
  */
-public class Node {
+public class TreeNode {
     private int data;
-    private Node left;
-    private Node right;
+    private TreeNode left;
+    private TreeNode right;
 
-    public Node(int data, Node left, Node right) {
+    public TreeNode(int data, TreeNode left, TreeNode right) {
         this.data = data;
         this.left = left;
         this.right = right;
@@ -24,19 +24,19 @@ public class Node {
         this.data = data;
     }
 
-    public Node getLeft() {
+    public TreeNode getLeft() {
         return left;
     }
 
-    public void setLeft(Node left) {
+    public void setLeft(TreeNode left) {
         this.left = left;
     }
 
-    public Node getRight() {
+    public TreeNode getRight() {
         return right;
     }
 
-    public void setRight(Node right) {
+    public void setRight(TreeNode right) {
         this.right = right;
     }
 }

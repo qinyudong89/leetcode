@@ -10,49 +10,49 @@ import java.util.*;
 public class BinaryTree {
 
     //前序
-    public static void preOrder(Node node) {
-        if (node == null) {
+    public static void preOrder(TreeNode treeNode) {
+        if (treeNode == null) {
             return;
         }
-        System.out.print(node.getData() + "\t");
-        preOrder(node.getLeft());
-        preOrder(node.getRight());
+        System.out.print(treeNode.getData() + "\t");
+        preOrder(treeNode.getLeft());
+        preOrder(treeNode.getRight());
     }
 
     //中序
-    public static void inOrder(Node node) {
-        if (node == null) {
+    public static void inOrder(TreeNode treeNode) {
+        if (treeNode == null) {
             return;
         }
-        inOrder(node.getLeft());
-        System.out.print(node.getData() + "\t");
-        inOrder(node.getRight());
+        inOrder(treeNode.getLeft());
+        System.out.print(treeNode.getData() + "\t");
+        inOrder(treeNode.getRight());
     }
 
     //后序
-    public static void postOrder(Node node) {
-        if (node == null) {
+    public static void postOrder(TreeNode treeNode) {
+        if (treeNode == null) {
             return;
         }
-        postOrder(node.getLeft());
-        postOrder(node.getRight());
-        System.out.print(node.getData() + "\t");
+        postOrder(treeNode.getLeft());
+        postOrder(treeNode.getRight());
+        System.out.print(treeNode.getData() + "\t");
     }
 
     //层遍历
-    public static List<List<Integer>> levelOrder(Node node) {
-        if (node == null) {
+    public static List<List<Integer>> levelOrder(TreeNode treeNode) {
+        if (treeNode == null) {
             return null;
         }
 
         List<List<Integer>> resultList = new ArrayList<>();
         List<Integer> list = new ArrayList<>();
         //此处用队列，是使用队列“先进先出”的特点
-        Queue<Node> queue = new LinkedList();
-        queue.offer(node);
+        Queue<TreeNode> queue = new LinkedList();
+        queue.offer(treeNode);
 
         while (!queue.isEmpty()) {
-            Node root = queue.peek();
+            TreeNode root = queue.peek();
             queue.poll();
             list.add(root.getData());
             if (root.getLeft() != null) {
@@ -68,11 +68,11 @@ public class BinaryTree {
     }
 
     public static void main(String[] args) {
-        Node node5 = new Node(7, null, null);
-        Node node4 = new Node(15, null, null);
-        Node node3 = new Node(20, node4, node5);
-        Node node2 = new Node(9, null, null);
-        Node node1 = new Node(3, node2, node3);
+        TreeNode node5 = new TreeNode(7, null, null);
+        TreeNode node4 = new TreeNode(15, null, null);
+        TreeNode node3 = new TreeNode(20, node4, node5);
+        TreeNode node2 = new TreeNode(9, null, null);
+        TreeNode node1 = new TreeNode(3, node2, node3);
 
 
         //[3,9,20,null,null,15,7],
