@@ -9,14 +9,14 @@ package com.example.leetcode.stringmatching;
 public class BruteForce {
 
     /**
-     * 查找出pattern在target中第一字首次出现的下标
+     * 查找出pattern在text中第一字首次出现的下标
      *
-     * @param target  主串
+     * @param text  文本
      * @param pattern 子串
      * @return
      */
-    public static int bruteForce(String target, String pattern) {
-        char[] t = target.toCharArray();
+    public static int bruteForce(String text, String pattern) {
+        char[] t = text.toCharArray();
         char[] p = pattern.toCharArray();
         int n = t.length;
         int m = p.length;
