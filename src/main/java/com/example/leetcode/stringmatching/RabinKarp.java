@@ -40,19 +40,19 @@ public class RabinKarp {
         if (n < m) {
             return -1;
         }
-        long txtHash = hash(text, m);
-        if ((patternHash == txtHash) && check(text, pattern, 0)) {
+        long textHash = hash(text, m);
+        if ((patternHash == textHash) && check(text, pattern, 0)) {
             return 0;
         }
 
         for (int i = m; i < n; i++) {
             //利用上一个子串的hash结果hash(Si-m+1)，在O(1)的时间内计算出hash(Si-m+2)
-            txtHash = (txtHash + prime - baseHash * text.charAt(i - m) % prime) % prime;
-            txtHash = (txtHash * denary + text.charAt(i)) % prime;
+            textHash = (textHash + prime - baseHash * text.charAt(i - m) % prime) % prime;
+            textHash = (textHash * denary + text.charAt(i)) % prime;
             //计算下标
             int offset = i - m + 1;
             //使用“拉斯维加斯方法则”，在比较散列值相同后，再去比较字符，保证在散列冲突的情况下，仍能保证正确性
-            if ((patternHash == txtHash) && check(text, pattern, offset)) {
+            if ((patternHash == textHash) && check(text, pattern, offset)) {
                 return offset;
             }
         }
