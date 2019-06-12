@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.Random;
 
 /**
- * @Description:
+ * @Description:Rabin-Karp算法
  * @Auther: 覃钰栋
  * @Date: 2019/6/11 17:33
  */
@@ -85,9 +85,4 @@ public class RabinKarp {
         return prime.longValue();
     }
 
-    public static void main(String[] args) {
-        RabinKarp rabinKarp = new RabinKarp();
-        int index = rabinKarp.search("面试算法之字符串匹配算法,Rabin-Karp算法详解 09-08 阅读数 3709 既然谈论到字符串相关算法,那么字符串匹配是根本绕不过去的坎。在面试中,面试官可", "既然谈论到字");
-        System.out.println(index);
-    }
 }

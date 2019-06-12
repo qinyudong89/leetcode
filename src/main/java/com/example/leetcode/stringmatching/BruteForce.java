@@ -11,20 +11,18 @@ public class BruteForce {
     /**
      * 查找出pattern在text中第一字首次出现的下标
      *
-     * @param text  文本
+     * @param text    文本
      * @param pattern 子串
      * @return
      */
     public static int bruteForce(String text, String pattern) {
-        char[] t = text.toCharArray();
-        char[] p = pattern.toCharArray();
-        int n = t.length;
-        int m = p.length;
+        int n = text.length();
+        int m = pattern.length();
         //每次对比次数为：n - m + 1次
         for (int i = 0; i <= n - m; i++) {
             int j = 0;
             //第一个字符如果匹配，则继续往后比较
-            while (j < m && p[j] == t[i + j]) {
+            while (j < m && pattern.charAt(j) == text.charAt(i + j)) {
                 j++;
             }
             //j==m则说明已经找到匹配的字符串
