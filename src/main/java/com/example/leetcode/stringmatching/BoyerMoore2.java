@@ -5,7 +5,7 @@ package com.example.leetcode.stringmatching;
  * 参考资料：
  * http://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
  * https://www.cnblogs.com/en-heng/p/5095542.html
- * https://www.cnblogs.com/en-heng/p/5095542.html
+ * https://github.com/henlix/string-pattern-matching/blob/master/src/org/sopt/string/strategy/impl/BM.java
  * @Auther: 覃钰栋
  * @Date: 2019/6/19 17:00
  */
