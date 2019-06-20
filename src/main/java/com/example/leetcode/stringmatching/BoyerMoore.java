@@ -40,7 +40,7 @@ public class BoyerMoore {
             if (j < m - 1) {
                 y = moveByGS(j, m, suffix, prefix);
             }
-            i = i + Math.max(x, y);
+            i += Math.max(x, y);
         }
         return -1;
     }
