@@ -12,8 +12,9 @@ public class Trie {
         t.put("a", "以");
         t.put("b", "请");
         t.put("c", "在");
+
         for (int i = 0; i < s.length(); i++) {
-            if (t.containsValue(s.charAt(i)+"")) {
+            if (t.containsValue(s.charAt(i) + "")) {
                 System.out.println(s.charAt(i));
             }
         }
