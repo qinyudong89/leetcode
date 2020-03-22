@@ -17,6 +17,7 @@ public class LinkedListCycle {
      * 2、如果Key重复，则说明存在环
      * 时间复杂度：O(n)
      * 窝里复杂度：O(n)
+     *
      * @param head
      * @return
      */
@@ -37,6 +38,7 @@ public class LinkedListCycle {
      * 解法二：通过快慢指针
      * 时间复杂度：O(n)
      * 窝里复杂度：O(1)
+     *
      * @param head
      * @return
      */
@@ -46,10 +48,10 @@ public class LinkedListCycle {
         }
         ListNode fast = head;
         ListNode slow = head;
-        while(fast.next != null && fast.next.next != null){
+        while (fast.next != null && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast){
+            if (slow == fast) {
                 return true;
             }
         }
