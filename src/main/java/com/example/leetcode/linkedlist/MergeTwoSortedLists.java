@@ -8,31 +8,21 @@ package com.example.leetcode.linkedlist;
  */
 public class MergeTwoSortedLists {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-        if(l1 == null && l2 == null){
-            return null;
-        }else if(l1 == null){
+        /*
+        终止条件：当两个链表都为空时，表示我们对链表已合并完成。
+        如何递归：我们判断 l1 和 l2 头结点哪个更小，然后较小结点的 next 指针指向其余结点的合并结果。（调用递归）
+         */
+        if (l1 == null){
             return l2;
-        }else if(l2 == null){
+        }else if (l2 == null){
             return l1;
+        }else if (l1.val < l2.val){
+            l1.next = mergeTwoLists(l1.next, l2);
+            return l1;
+        }else {
+            l2.next = mergeTwoLists(l1, l2.next);
+            return l2;
         }
-
-        ListNode newNode ;
-       if(l1.val < l2.val){
-            newNode = l1;
-            newNode.next = mergeTwoLists(l1.next, l2);
-       }else {
-           newNode = l2;
-           newNode.next = mergeTwoLists(l1, l2.next);
-       }
-       return newNode;
     }
 
-    public static void main(String[] args) {
-       int j = 0;
-       int count = 3;
-       while(j < count-1){
-           j++;
-       }
-        System.out.println(j);
-    }
 }
