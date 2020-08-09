@@ -1,4 +1,6 @@
-package com.example.leetcode.linkedlist;
+package com.example.leetcode.linked.palindrome;
+
+import com.example.leetcode.linked.ListNode;
 
 /**
  * @author yu dong qin

@@ -1,4 +1,6 @@
-package com.example.leetcode.linkedlist;
+package com.example.leetcode.linked.loopExists;
+
+import com.example.leetcode.linked.ListNode;
 
 import java.util.HashSet;
 import java.util.Set;

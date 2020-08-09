@@ -1,4 +1,4 @@
-package com.example.leetcode.linkedlist;
+package com.example.leetcode.linked;
 
 public class SwapNodes {
     public ListNode swapPairs(ListNode head) {

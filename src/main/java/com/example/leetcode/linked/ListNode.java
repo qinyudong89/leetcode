@@ -1,4 +1,4 @@
-package com.example.leetcode.linkedlist;
+package com.example.leetcode.linked;
 
 /**
  * @author yu dong qin
@@ -7,10 +7,10 @@ package com.example.leetcode.linkedlist;
  * @date
  */
 public class ListNode {
-    int val;
-    ListNode next;
+    public int  val;
+    public ListNode next;
 
-    ListNode(int x) {
+    public ListNode(int x) {
         val = x;
         next = null;
     }
