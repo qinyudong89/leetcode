@@ -1,6 +1,5 @@
 package od.base;
 
-import java.util.LinkedHashSet;
 import java.util.Scanner;
 
 /**
@@ -10,18 +9,19 @@ import java.util.Scanner;
 public class HJ9 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String s = in.nextLine();
-        char[] arr = s.toCharArray();
-        LinkedHashSet<Character> set = new LinkedHashSet<>();
-        // 反向遍历
-        for (int i = arr.length - 1; i >= 0; i--) {
-            set.add(arr[i]);
+        String s = new StringBuilder(in.nextLine()).reverse().toString();
+        StringBuilder b = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            /**
+             * 这个解法的精髓在：s.indexOf(s.charAt(i)) == i
+             * 1、indexOf方法只返回第一次查找到的字符下标，
+             * 2、随着for循环的i值不断增长，如果字符都是新的，与之前出现的字符不重复，那么判断条件一直成立；
+             * 3、一旦中间有重复字符，由于indexOf返回的是第一次该字符出现的地方，导致判断条件不成立，不会被append结果中去
+             */
+            if (s.indexOf(s.charAt(i)) == i) {
+                b.append(s.charAt(i));
+            }
         }
-        //拼装成整数
-        StringBuilder sb = new StringBuilder();
-        for (Character character : set) {
-            sb.append(character);
-        }
-        System.out.println(Integer.parseInt(sb.toString()));
+        System.out.print(Integer.parseInt(b.toString()));
     }
 }
