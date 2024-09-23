@@ -51,7 +51,7 @@ public class HW４ {
             }
             // 添加右侧字符
             char rigthChar = s2.charAt(i);
-            windowsMap.put(leftChar, windowsMap.getOrDefault(rigthChar, 0) + 1);
+            windowsMap.put(rigthChar, windowsMap.getOrDefault(rigthChar, 0) + 1);
 
             // 判断是否匹配
             if (match(countMap, windowsMap)) {
