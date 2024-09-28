@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @description
  * @date 2024/9/27 18:04:58
  */
-public class CoinChange {
+public class LC322 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String[] pushs = scanner.nextLine().split(",");
