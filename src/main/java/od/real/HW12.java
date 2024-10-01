@@ -1,64 +1,62 @@
 package od.real;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Scanner;
 
 /**
  * @Author : Morgan.Qin
  * @create 2024/10/1 13:04
  */
 public class HW12 {
-
-    private PriorityQueue<App> apps = new PriorityQueue<>(Comparator.comparingInt(a -> -a.priority));
-
-    private int timeToMinutes(String time) {
-        String[] parts = time.split(":");
-        return Integer.parseInt(parts[0]) * 60 + Integer.parseInt(parts[1]);
-    }
-
-    public void addApp(String name, int priority, String start, String end) {
-        int startTime = timeToMinutes(start);
-        int endTime = timeToMinutes(end);
-        if (startTime >= endTime) return; // 注册失败
-
-        App newApp = new App(name, priority, startTime, endTime);
-        // 检查冲突并调整应用
-        apps.removeIf(existingApp -> conflicts(existingApp, newApp) && existingApp.priority < newApp.priority);
-        apps.offer(newApp); // 注册新应用
-    }
-
-    private boolean conflicts(App a, App b) {
-        return !(a.endTime <= b.startTime || b.endTime <= a.startTime);
-    }
-
-    public String getAvailableApp(String currentTime) {
-        int currTime = timeToMinutes(currentTime);
-        for (App app : apps) {
-            if (currTime >= app.startTime && currTime < app.endTime) {
-                return app.name; // 返回可用的应用
-            }
-        }
-        return "NA"; // 没有可用应用
-    }
+    private static PriorityQueue<App> queue = new PriorityQueue<>(Comparator.comparingInt(o -> o.priority));
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        HW12 manager = new HW12();
-
-        int n = Integer.parseInt(scanner.nextLine());
+        Scanner in = new Scanner(System.in);
+        int n = Integer.parseInt(in.nextLine());
         for (int i = 0; i < n; i++) {
-            String[] input = scanner.nextLine().split(" ");
-            manager.addApp(input[0], Integer.parseInt(input[1]), input[2], input[3]);
+            String[] arr = in.nextLine().split(" ");
+            addApp(arr[0], arr[1], arr[2], arr[3]);
         }
-        System.out.println(manager.getAvailableApp(scanner.nextLine()));
+        System.out.println(getAvailableApp(in.nextLine()));
+    }
+
+    // 时间转换
+    private static int timeConvert(String time) {
+        String[] times = time.split(":");
+        return Integer.parseInt(times[0]) * 60 + Integer.parseInt(times[1]);
+    }
+
+    // 添加app
+    private static void addApp(String name, String priority, String start, String end) {
+        App newApp = new App(name, Integer.parseInt(priority), timeConvert(start), timeConvert(end));
+        queue.removeIf(existApp -> checkConflict(existApp, newApp) && existApp.priority < newApp.priority);
+        queue.offer(newApp);
+    }
+
+    // 检查冲突(只有在新应用程序的优先级更高且时间段有冲突的情况下，旧的应用程序才会被从集合中移除)
+    private static boolean checkConflict(App a, App b) {
+        return !(a.endTime <= b.startTime || a.startTime >= b.endTime);
+    }
+
+    // 根据时间获取可用的app
+    public static String getAvailableApp(String timeStr) {
+        int time = timeConvert(timeStr);
+        for (App app : queue) {
+            if (time >= app.startTime && time <= app.endTime) {
+                return app.name;
+            }
+        }
+        return "NA";
     }
 
     public static class App {
-        String name;
-        int priority;
-        int startTime; // 时间以分钟为单位
-        int endTime;
+        private String name;
+        private int priority;
+        private int startTime;
+        private int endTime;
 
-        App(String name, int priority, int startTime, int endTime) {
+        public App(String name, int priority, int startTime, int endTime) {
             this.name = name;
             this.priority = priority;
             this.startTime = startTime;
