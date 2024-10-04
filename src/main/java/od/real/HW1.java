@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @create 2024/9/21 8:47
  * 整数对最小和
  */
-public class T56 {
+public class HW1 {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int n1 = in.nextInt();
