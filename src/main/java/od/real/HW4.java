@@ -10,7 +10,7 @@ import java.util.Scanner;
  * * 题目：最左侧冗余子串
  * * 知识点：哈希＋滑动窗口
  */
-public class HW４ {
+public class HW4 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
