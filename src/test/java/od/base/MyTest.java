@@ -1,6 +1,8 @@
 package od.base;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * @author Morgan.Qin
@@ -9,22 +11,65 @@ import java.util.Arrays;
  * @date 2024/9/18 14:09:24
  */
 public class MyTest {
+
     public static void main(String[] args) {
-        String password = "021Abc9Abc1";
-//        System.out.println(password.substring(0,3));
-        // 检查是否有长度大于2的重复子串
-        ;
-        System.out.println(getString(password, 0, 3));
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String s1 = sc.nextLine();
+            String s2 = sc.nextLine();
+            int k = sc.nextInt();
+            // s2长度不够
+            if (s2.length() < s1.length() + k) {
+                System.out.println(-1);
+                continue;
+            }
+            Map<Character, Integer> map = calculate(s1);
+            Map<Character, Integer> map1 = calculate(s2.substring(0, s1.length() + k));
+            boolean firstResult = true;
+            for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+                if (!map1.containsKey(entry.getKey())
+                        || map1.get(entry.getKey()) < entry.getValue()) {
+                    firstResult = false;
+                    break;
+                }
+            }
+            if (firstResult) {
+                System.out.println(0);
+                continue;
+            }
+
+
+            int result = -1;
+            int start = 1;
+            for (int i = s1.length() + k; i < s2.length(); i++) {
+                char last = s2.charAt(start++);
+                char current = s2.charAt(i);
+                map1.put(last, map1.get(last) - 1);
+                map1.put(current, map1.getOrDefault(current, 0) + 1);
+
+                boolean flag = true;
+                for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+                    if (!map1.containsKey(entry.getKey())
+                            || map1.get(entry.getKey()) < entry.getValue()) {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag) {
+                    result = start - 1;
+                    break;
+                }
+            }
+            System.out.println(result);
+        }
     }
-    private static boolean getString(String str, int l, int r) {
-        if (r >= str.length()) {
-            return false;
+
+    static Map<Character, Integer> calculate(String word) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (char c : word.toCharArray()) {
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
-        System.out.println(str.substring(r) + " | "+str.substring(l, r));
-        if (str.substring(r).contains(str.substring(l, r))) {
-            return true;
-        } else {
-            return getString(str,l+1,r+1);
-        }
+        return map;
     }
 }

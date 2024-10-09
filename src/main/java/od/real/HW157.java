@@ -5,48 +5,37 @@ import java.util.Scanner;
 /**
  * @Author : Morgan.Qin
  * @create 2024/10/9 8:51
+ *  * * 题目：最长的指定瑕疵度的元音子串
+ *  * * 知识点：滑动窗口
  */
 public class HW157 {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-
-        // 读取允许的最大瑕疵度
-        int flaw = in.nextInt();
-        in.nextLine();  // 消耗换行符
-
-        // 读取输入字符串
+        int flaw = Integer.parseInt(in.nextLine());
         String s = in.nextLine();
-
-        // 初始化最大子串长度
         int maxLen = 0;
-
-        // 外层循环：枚举子串的起始位置
-        for (int start = 0; start < s.length(); start++) {
-            // 起始字符必须是元音字母
-            if (!isVowel(s.charAt(start))) {
-                continue;  // 跳过非元音字母作为起始位置的情况
+        for (int left = 0; left < s.length(); left++) {
+            if (!isVowel(s.charAt(left))) {
+                continue;
             }
-
-            // 记录当前子串的瑕疵度
-            int flawCount = 0;
-
-            // 内层循环：枚举子串的结束位置
-            for (int end = start; end < s.length(); end++) {
-                // 检查当前字符是否是元音字母
-                if (!isVowel(s.charAt(end))) {
-                    flawCount++;  // 累加瑕疵度
+            int count = 0;
+            // 窗口内最左字符是元音才开始记数
+            for (int rigth = left; rigth < s.length(); rigth++) {
+                if (!isVowel(s.charAt(rigth))){
+                    count++;
                 }
-
-                // 如果瑕疵度超过允许的最大值，提前退出内层循环
-                if (flawCount > flaw) {
+                // 瑕疵度超限，重置
+                if (count > flaw){
                     break;
                 }
-
-                // 更新最大子串长度
-                maxLen = Math.max(maxLen, end - start + 1);
+                // 更新最长子串的长度
+                if (isVowel(s.charAt(rigth))){
+                    maxLen = Math.max(maxLen, rigth - left + 1);
+                }
             }
         }
+
 
         // 输出最长子串的长度
         System.out.println(maxLen);
