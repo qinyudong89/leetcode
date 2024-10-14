@@ -7,6 +7,7 @@ import java.util.Scanner;
 /**
  * @Author : Morgan.Qin
  * @create 2024/10/1 13:04
+ * 描述：手机App防沉迷系统
  */
 public class HW12 {
     private static PriorityQueue<App> queue = new PriorityQueue<>(Comparator.comparingInt(o -> o.priority));
